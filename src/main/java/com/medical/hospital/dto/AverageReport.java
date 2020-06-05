@@ -1,27 +1,29 @@
 package com.medical.hospital.dto;
 
-public class AverageReport {
-    private int quantity;
-    private int averageTemperature;
+import java.math.BigDecimal;
 
-    public AverageReport(int quantity, int averageTemperature) {
+public class AverageReport {
+    private Long quantity;
+    private BigDecimal averageTemperature;
+
+    public AverageReport(Long quantity, BigDecimal averageTemperature) {
         this.quantity = quantity;
         this.averageTemperature = averageTemperature;
     }
 
-    public int getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
-    public int getAverageTemperature() {
+    public BigDecimal getAverageTemperature() {
         return averageTemperature;
     }
 
-    public void setAverageTemperature(int averageTemperature) {
+    public void setAverageTemperature(BigDecimal averageTemperature) {
         this.averageTemperature = averageTemperature;
     }
 }

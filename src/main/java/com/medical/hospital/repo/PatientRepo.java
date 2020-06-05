@@ -2,6 +2,7 @@ package com.medical.hospital.repo;
 
 import com.medical.hospital.dto.Patient;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -13,5 +14,7 @@ public class PatientRepo {
             new Patient("Козлов А.В.", 39.8),
             new Patient("Сидоров С.Г.", 35.4)));
 
-
+    public Flux<Patient> getAllPatients() {
+        return Flux.fromIterable(patients);
+    }
 }
