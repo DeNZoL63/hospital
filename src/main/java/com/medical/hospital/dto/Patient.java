@@ -4,6 +4,9 @@ public class Patient {
     private String name;
     private double temperature;
 
+    public Patient() {
+    }
+
     public Patient(String name, double temperature) {
         this.name = name;
         this.temperature = temperature;

@@ -17,17 +17,15 @@ public class CalculateController {
 
     @RequestMapping("/average")
     private Mono<AverageReport> calculateAverageTemperature() {
-        BigDecimal accum = BigDecimal.ZERO;
+        final BigDecimal[] accum = {BigDecimal.ZERO};
 
-        return Mono.create(cb -> WebClient.create()
+        return WebClient.create()
                 .get()
                 .uri(URI.create("http://localhost:8080/reception/patients"))
                 .retrieve()
                 .bodyToFlux(Patient.class)
-                .map(patient -> accum.add(BigDecimal.valueOf(patient.getTemperature())))
+                .map(patient -> accum[0] = accum[0].add(BigDecimal.valueOf(patient.getTemperature())))
                 .count()
-                .map(aLong -> Mono.just(
-                        new AverageReport(aLong, accum.divide(BigDecimal.valueOf(aLong), MathContext.DECIMAL32))
-                )));
+                .map(aLong -> new AverageReport(aLong, accum[0].divide(BigDecimal.valueOf(aLong), MathContext.DECIMAL32)));
     }
 }
